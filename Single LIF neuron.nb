@@ -1,0 +1,418 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17132,        410]
+NotebookOptionsPosition[     15672,        374]
+NotebookOutlinePosition[     16602,        401]
+CellTagsIndexPosition[     16559,        398]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Single LIF neuron ", "Title",
+ CellChangeTimes->{{3.8198000282558126`*^9, 
+  3.819800037223898*^9}},ExpressionUUID->"0be26e2d-23be-4e32-9be1-\
+acfbee1e4b8f"],
+
+Cell["Interactive demonstration", "Subtitle",
+ CellChangeTimes->{{3.819800039486012*^9, 3.8198000452823877`*^9}, 
+   3.819800431026973*^9},ExpressionUUID->"b0605a60-0df4-4d9f-83f6-\
+6d66a64c9f9b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"sol", "=", 
+     RowBox[{"NDSolveValue", "[", 
+      RowBox[{
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"c", "*", 
+           RowBox[{
+            RowBox[{"V", "'"}], "[", "t", "]"}]}], "\[Equal]", 
+          RowBox[{
+           RowBox[{"g", "*", 
+            RowBox[{"(", 
+             RowBox[{"El", "-", 
+              RowBox[{"V", "[", "t", "]"}]}], ")"}]}], "+", "Istim"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"V", "[", "0", "]"}], "\[Equal]", "El"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"event", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"V", "[", "t", "]"}], ">", "20"}], ",", 
+            RowBox[{
+             RowBox[{"V", "[", "t", "]"}], "\[Rule]", " ", "Vreset"}]}], 
+           "]"}], "/.", 
+          RowBox[{"event", "\[Rule]", "WhenEvent"}]}]}], 
+        "\[IndentingNewLine]", "}"}], ",", 
+       RowBox[{"V", "[", "t", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "1000"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Plot", "[", 
+     RowBox[{"sol", ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "0", ",", "500"}], "}"}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "80"}], ",", "20"}], "}"}]}], ",", 
+      RowBox[{"ColorFunction", "\[Rule]", "\"\<Rainbow\>\""}], ",", 
+      RowBox[{"PerformanceGoal", "\[Rule]", "\"\<Quality\>\""}], ",", 
+      RowBox[{"AxesLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<t, ms\>\"", ",", 
+         "\"\<\!\(\*SubscriptBox[\(V\), \(m\)]\), mV\>\""}], "}"}]}], ",", 
+      RowBox[{"LabelStyle", "\[Rule]", "12"}]}], "]"}]}], ",", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", ",", "300", ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(C\), \(m\)]\) (pF)\>\"", ",", "15"}], 
+        "]"}]}], "}"}], ",", "100", ",", "500"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"g", ",", "5", ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(g\), \(leak\)]\) (nS)\>\"", ",", "15"}], 
+        "]"}]}], "}"}], ",", "1", ",", "10"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"El", ",", 
+       RowBox[{"-", "60"}], ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(E\), \(leak\)]\) (mV)\>\"", ",", "15"}], 
+        "]"}]}], "}"}], ",", 
+     RowBox[{"-", "75"}], ",", 
+     RowBox[{"-", "55"}]}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Istim", ",", "150", ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(I\), \(stim\)]\) (pA)\>\"", ",", "15"}], 
+        "]"}]}], "}"}], ",", "0", ",", "350"}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"Vreset", ",", 
+       RowBox[{"-", "70"}], ",", 
+       RowBox[{"Style", "[", 
+        RowBox[{
+        "\"\<\!\(\*SubscriptBox[\(V\), \(reset\)]\) (mV)\>\"", ",", "15"}], 
+        "]"}]}], "}"}], ",", 
+     RowBox[{"-", "80"}], ",", 
+     RowBox[{"-", "60"}]}], "}"}], ",", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"SynchronousUpdating", "\[Rule]", "True"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ContinuousAction", "\[Rule]", "True"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"TrackedSymbols", "\[RuleDelayed]", "True"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ControlPlacement", "\[Rule]", "Left"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"LocalizeVariables", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellOpen->True,
+ CellChangeTimes->{{3.819808912502645*^9, 3.819808933239987*^9}, {
+   3.819809019611711*^9, 3.819809246382904*^9}, {3.819809284166823*^9, 
+   3.8198094150313683`*^9}, {3.819809446086411*^9, 3.819809645235882*^9}, {
+   3.8198097251395693`*^9, 3.819809881511333*^9}, {3.819809937441413*^9, 
+   3.8198099480399513`*^9}, {3.8198101142344627`*^9, 3.819810115303687*^9}, {
+   3.8198101465560617`*^9, 3.8198101648341827`*^9}, {3.819810226595079*^9, 
+   3.819810227559071*^9}, {3.819810338576235*^9, 3.819810449530648*^9}, {
+   3.819810483044836*^9, 3.819810607261457*^9}, {3.8198106517303333`*^9, 
+   3.819810652305696*^9}, {3.8198107422806263`*^9, 3.81981077922367*^9}, {
+   3.819810864418599*^9, 3.819810876518504*^9}, {3.819810944349579*^9, 
+   3.819811002005355*^9}, {3.819811039819976*^9, 3.8198110419488907`*^9}, 
+   3.819811073248732*^9, {3.819811564503181*^9, 3.8198115685872498`*^9}, {
+   3.819812004348049*^9, 3.819812006572114*^9}, {3.819817375909808*^9, 
+   3.819817433378394*^9}, {3.819817463388727*^9, 3.819817463469378*^9}, {
+   3.819817719076037*^9, 3.819817758996839*^9}},
+ CellLabel->"In[39]:=",ExpressionUUID->"8633f222-8b3d-4282-a555-604eb287737c"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 
+    247., $CellContext`El$$ = -60, $CellContext`g$$ = 
+    2.1100000000000003`, $CellContext`Istim$$ = 
+    297.5, $CellContext`Vreset$$ = -70, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c$$], 300, 
+       Style["\!\(\*SubscriptBox[\(C\), \(m\)]\) (pF)", 15]}, 100, 500}, {{
+       Hold[$CellContext`g$$], 5, 
+       Style["\!\(\*SubscriptBox[\(g\), \(leak\)]\) (nS)", 15]}, 1, 10}, {{
+       Hold[$CellContext`El$$], -60, 
+       Style["\!\(\*SubscriptBox[\(E\), \(leak\)]\) (mV)", 15]}, -75, -55}, {{
+      
+       Hold[$CellContext`Istim$$], 150, 
+       Style["\!\(\*SubscriptBox[\(I\), \(stim\)]\) (pA)", 15]}, 0, 350}, {{
+       Hold[$CellContext`Vreset$$], -70, 
+       Style["\!\(\*SubscriptBox[\(V\), \(reset\)]\) (mV)", 15]}, -80, -60}}, 
+    Typeset`size$$ = {360., {108., 112.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = 
+        300, $CellContext`El$$ = -60, $CellContext`g$$ = 
+        5, $CellContext`Istim$$ = 150, $CellContext`Vreset$$ = -70}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`sol = 
+        NDSolveValue[{$CellContext`c$$ 
+            Derivative[
+             1][$CellContext`V][$CellContext`t] == $CellContext`g$$ \
+($CellContext`El$$ - $CellContext`V[$CellContext`t]) + $CellContext`Istim$$, \
+$CellContext`V[0] == $CellContext`El$$, 
+           ReplaceAll[
+            $CellContext`event[$CellContext`V[$CellContext`t] > 
+             
+             20, $CellContext`V[$CellContext`t] -> $CellContext`Vreset$$], \
+$CellContext`event -> WhenEvent]}, 
+          $CellContext`V[$CellContext`t], {$CellContext`t, 0, 1000}]; 
+       Plot[$CellContext`sol, {$CellContext`t, 0, 500}, 
+         PlotRange -> {-80, 20}, ColorFunction -> "Rainbow", PerformanceGoal -> 
+         "Quality", 
+         AxesLabel -> {"t, ms", "\!\(\*SubscriptBox[\(V\), \(m\)]\), mV"}, 
+         LabelStyle -> 12]), "Specifications" :> {{{$CellContext`c$$, 300, 
+          Style["\!\(\*SubscriptBox[\(C\), \(m\)]\) (pF)", 15]}, 100, 
+         500}, {{$CellContext`g$$, 5, 
+          Style["\!\(\*SubscriptBox[\(g\), \(leak\)]\) (nS)", 15]}, 1, 
+         10}, {{$CellContext`El$$, -60, 
+          Style[
+          "\!\(\*SubscriptBox[\(E\), \(leak\)]\) (mV)", 
+           15]}, -75, -55}, {{$CellContext`Istim$$, 150, 
+          Style["\!\(\*SubscriptBox[\(I\), \(stim\)]\) (pA)", 15]}, 0, 
+         350}, {{$CellContext`Vreset$$, -70, 
+          Style[
+          "\!\(\*SubscriptBox[\(V\), \(reset\)]\) (mV)", 15]}, -80, -60}}, 
+      "Options" :> {
+       SynchronousUpdating -> True, ContinuousAction -> True, TrackedSymbols :> 
+        True, ControlPlacement -> Left, LocalizeVariables -> True}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{698., {153., 159.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.819812015696836*^9, 3.819815150091569*^9, {3.819817408855748*^9, 
+   3.819817433756337*^9}, 3.819817464083076*^9, {3.8198177227588243`*^9, 
+   3.819817778219508*^9}},
+ CellLabel->"Out[39]=",ExpressionUUID->"6316388e-54ff-4c1b-b7c6-b360639ffea3"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"CloseAllInputsCells", "[", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"nb", ",", "cells"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"nb", "=", 
+       RowBox[{"EvaluationNotebook", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"cells", "=", 
+       RowBox[{"Cells", "[", 
+        RowBox[{"nb", ",", 
+         RowBox[{"CellStyle", "\[Rule]", "\"\<Input\>\""}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"SetOptions", "[", 
+         RowBox[{"#", ",", 
+          RowBox[{"CellOpen", "\[Rule]", "False"}]}], "]"}], "&"}], "/@", 
+       "cells"}], ";"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"OpenAllInputsCells", "[", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"nb", ",", "cells"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"nb", "=", 
+       RowBox[{"EvaluationNotebook", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"cells", "=", 
+       RowBox[{"Cells", "[", 
+        RowBox[{"nb", ",", 
+         RowBox[{"CellStyle", "\[Rule]", "\"\<Input\>\""}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"SetOptions", "[", 
+         RowBox[{"#", ",", 
+          RowBox[{"CellOpen", "\[Rule]", "True"}]}], "]"}], "&"}], "/@", 
+       "cells"}], ";"}]}], "]"}]}], ";"}]}], "Input",
+ CellOpen->True,
+ CellChangeTimes->{{3.81981637671986*^9, 3.819816382102344*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"665c9790-0d99-4dd9-973f-e107a1da3fcd"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 
+    160., $CellContext`El$$ = -73.26, $CellContext`g$$ = 
+    2.7, $CellContext`Istim$$ = 320.5, $CellContext`Vreset$$ = -72.2, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`c$$], 300, 
+       Style["\!\(\*SubscriptBox[\(C\), \(m\)]\)", 15]}, 100, 500}, {{
+       Hold[$CellContext`g$$], 5, 
+       Style["\!\(\*SubscriptBox[\(g\), \(leak\)]\)", 15]}, 1, 10}, {{
+       Hold[$CellContext`El$$], -60, 
+       Style["\!\(\*SubscriptBox[\(E\), \(leak\)]\)", 15]}, -75, -55}, {{
+       Hold[$CellContext`Istim$$], 150, 
+       Style["\!\(\*SubscriptBox[\(I\), \(stim\)]\)", 15]}, 0, 350}, {{
+       Hold[$CellContext`Vreset$$], -70, 
+       Style["\!\(\*SubscriptBox[\(V\), \(reset\)]\)", 15]}, -80, -60}}, 
+    Typeset`size$$ = {360., {108., 112.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = 
+        300, $CellContext`El$$ = -60, $CellContext`g$$ = 
+        5, $CellContext`Istim$$ = 150, $CellContext`Vreset$$ = -70}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`sol = 
+        NDSolveValue[{$CellContext`c$$ 
+            Derivative[
+             1][$CellContext`V][$CellContext`t] == $CellContext`g$$ \
+($CellContext`El$$ - $CellContext`V[$CellContext`t]) + $CellContext`Istim$$, \
+$CellContext`V[0] == $CellContext`El$$, 
+           ReplaceAll[
+            $CellContext`event[$CellContext`V[$CellContext`t] > 
+             20, $CellContext`V[$CellContext`t] -> $CellContext`Vreset$$], \
+$CellContext`event -> WhenEvent]}, 
+          $CellContext`V[$CellContext`t], {$CellContext`t, 0, 1000}]; 
+       Plot[$CellContext`sol, {$CellContext`t, 0, 500}, 
+         PlotRange -> {-80, 20}, ColorFunction -> "Rainbow", PerformanceGoal -> 
+         "Quality", 
+         AxesLabel -> {"t, ms", "\!\(\*SubscriptBox[\(V\), \(m\)]\), mV"}, 
+         LabelStyle -> 12]), "Specifications" :> {{{$CellContext`c$$, 300, 
+          Style["\!\(\*SubscriptBox[\(C\), \(m\)]\)", 15]}, 100, 
+         500}, {{$CellContext`g$$, 5, 
+          Style["\!\(\*SubscriptBox[\(g\), \(leak\)]\)", 15]}, 1, 
+         10}, {{$CellContext`El$$, -60, 
+          Style[
+          "\!\(\*SubscriptBox[\(E\), \(leak\)]\)", 
+           15]}, -75, -55}, {{$CellContext`Istim$$, 150, 
+          Style["\!\(\*SubscriptBox[\(I\), \(stim\)]\)", 15]}, 0, 
+         350}, {{$CellContext`Vreset$$, -70, 
+          Style["\!\(\*SubscriptBox[\(V\), \(reset\)]\)", 15]}, -80, -60}}, 
+      "Options" :> {
+       SynchronousUpdating -> True, ContinuousAction -> True, TrackedSymbols :> 
+        True, ControlPlacement -> Left, LocalizeVariables -> True}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{661., {137., 143.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Input",
+ CellChangeTimes->{{3.819817490551896*^9, 3.819817492932477*^9}, 
+   3.8198175623842497`*^9},ExpressionUUID->"daf593f4-509b-4263-a146-\
+99f6be65ecf9"]
+}, Open  ]]
+},
+WindowSize->{1068, 847},
+WindowMargins->{{62, Automatic}, {Automatic, 1}},
+SpellingDictionaries->{"CorrectWords"->{
+ "\:0411\:043e\:043b\:0435\:0435", 
+  "\:0443\:0434\:043e\:0431\:043d\:044b\:0439", 
+  "\:0441\:043f\:043e\:0441\:043e\:0431", 
+  "\:0437\:0430\:043f\:0438\:0441\:0438", 
+  "\:0443\:0434\:043e\:0431\:043d\:044b\:0435", 
+  "\:0438\:043c\:0435\:043d\:0430", 
+  "\:043f\:0435\:0440\:0435\:043c\:0435\:043d\:043d\:044b\:0445", 
+  "\:0442\:0430\:043a\:043e\:0439", "\:043d\:043e", "\:043d\:0435", 
+  "\:0440\:0430\:0431\:043e\:0442\:0430\:0435\:0442", 
+  "\:0431\:044b\:043b\:0438", "\:0431\:044b"}},
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"bbc023b6-2c12-4b9a-8f8c-fcd496c778ab"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 163, 3, 98, "Title",ExpressionUUID->"0be26e2d-23be-4e32-9be1-acfbee1e4b8f"],
+Cell[746, 27, 196, 3, 53, "Subtitle",ExpressionUUID->"b0605a60-0df4-4d9f-83f6-6d66a64c9f9b"],
+Cell[CellGroupData[{
+Cell[967, 34, 5196, 129, 451, "Input",ExpressionUUID->"8633f222-8b3d-4282-a555-604eb287737c",
+ CellOpen->True],
+Cell[6166, 165, 4032, 81, 331, "Output",ExpressionUUID->"6316388e-54ff-4c1b-b7c6-b360639ffea3"]
+}, Open  ]],
+Cell[10213, 249, 1626, 45, 136, "Input",ExpressionUUID->"665c9790-0d99-4dd9-973f-e107a1da3fcd",
+ CellOpen->True],
+Cell[11842, 296, 3814, 75, 295, "Input",ExpressionUUID->"daf593f4-509b-4263-a146-99f6be65ecf9"]
+}, Open  ]]
+}
+]
+*)
+
